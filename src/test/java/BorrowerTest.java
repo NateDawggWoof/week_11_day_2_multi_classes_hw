@@ -26,5 +26,25 @@ public class BorrowerTest {
         assertEquals(0, borrower.countStock());
     }
 
+    @Test
+    public void addBookStock(){
+        borrower.addBook(book);
+        assertEquals(1, borrower.countStock());
+    }
+
+    @Test
+    public void hasSpaceInStockTrue(){
+        borrower.addBook(book);
+        assertEquals(true, borrower.canBorrow());
+
+    }
+
+    @Test
+    public void hasSpaceInStockFalse() {
+        borrower.addBook(book);
+        borrower.addBook(book);
+        assertEquals(false, borrower.canBorrow());
+    }
+
 
 }

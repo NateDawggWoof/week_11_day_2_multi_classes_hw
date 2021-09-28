@@ -23,5 +23,13 @@ public class Borrower {
     public int countStock() {
         return this.stock.size();
     }
+
+    public boolean canBorrow() {
+        return this.countStock() < this.getCapacity();
+    }
+
+    public void addBook(Book book) {
+        this.stock.add(book);
+    }
 }
 

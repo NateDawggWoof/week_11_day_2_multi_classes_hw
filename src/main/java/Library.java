@@ -21,4 +21,15 @@ public class Library {
     public int countStock() {
         return this.stock.size();
     }
+
+    public Book removeBook() {
+        return this.stock.remove(0);
+    }
+
+    public void checkOutBook(Borrower borrower) {
+        if(borrower.canBorrow()){
+            Book book = this.removeBook();
+            borrower.addBook(book);
+        }
+    }
 }

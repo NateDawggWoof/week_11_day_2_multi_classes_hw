@@ -19,4 +19,6 @@ public class BookTest {
         assertEquals("Dystopian", book.getGenre());
 
     }
+
+
 }

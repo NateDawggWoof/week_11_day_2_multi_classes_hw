@@ -7,11 +7,13 @@ public class LibraryTest {
 
     private Library library;
     private Book book;
+    private Borrower borrower;
 
     @Before
     public void before(){
         library = new Library(5);
         book = new Book("1984","George Orwell","Dystopian");
+        borrower = new Borrower("Steve", 2);
     }
 
     @Test
@@ -23,5 +25,34 @@ public class LibraryTest {
     public void hasBooksInStock(){
         library.addBook(book);
         assertEquals(1,library.countStock());
+    }
+
+    @Test
+    public void checkRemoveBook(){
+        library.addBook(book);
+        library.addBook(book);
+        library.removeBook();
+        assertEquals(1,library.countStock());
+
+    }
+
+    @Test
+    public void checkRentalTransactionPasses(){
+        library.addBook(book);
+        library.checkOutBook(borrower);
+        assertEquals(0, library.countStock());
+        assertEquals(1, borrower.countStock());
+    }
+
+    @Test
+    public void checkRentalTransactionFails(){
+        library.addBook(book);
+        library.addBook(book);
+        library.addBook(book);
+        library.checkOutBook(borrower);
+        library.checkOutBook(borrower);
+        library.checkOutBook(borrower);
+        assertEquals(1, library.countStock());
+        assertEquals(2, borrower.countStock());
     }
 }
